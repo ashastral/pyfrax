@@ -21,11 +21,17 @@ class canvas_3d:
         fp = self.flatten_point(x, y, z)
         # out of bounds check
         if not all([0 < fp[n] < self.dim[n] for n in xrange(2)]):
-            print "out of bounds @ %s,%s" % tuple(fp)
             return
         c = self.shade(x, y, z, c)
         pixel_start = int(fp[0]) + int(fp[1]) * self.dim[0]
         self.image[pixel_start:pixel_start + self.ps] = c
+    def line(self, start, end, c, res):
+        if len(c) != self.ps:
+            raise ValueError("invalid color")
+        distance = [end[n] - start[n] for n in xrange(3)]
+        for offset in xrange(res):
+            x, y, z = [start[n] + distance[n] * (offset / float(res)) for n in xrange(3)]
+            self.point(x, y, z, c)
     def flatten_point(self, x, y, z):
         if z <= 0:
             raise ValueError("invalid depth")
