@@ -1,1 +1,1 @@
-base_dir = '/home/fraxtil/fraxme/'
+base_dir = '.'
