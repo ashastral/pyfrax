@@ -1,0 +1,5 @@
+BLACK = (0,)
+DARKGRAY = (64,)
+GRAY = (128,)
+LIGHTGRAY = (192,)
+WHITE = (255,)
